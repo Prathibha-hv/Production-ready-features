@@ -14,11 +14,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
   private final PostRepository repository;
   private final ModelMapper mapper;
+
+    public PostServiceImpl(PostRepository repository, ModelMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+
     @Override
     public List<PostDto> getAllPosts() {
        return  repository.findAll()
@@ -39,5 +45,17 @@ public class PostServiceImpl implements PostService {
        PostEntity postEntity=repository.findById(id)
                .orElseThrow(()->new ResourceNotFoundException("Post not found with id: "+id));
      return mapper.map(postEntity,PostDto.class);
+    }
+
+    @Override
+    public PostDto updatePost(PostDto updatedPost, long id) {
+        PostEntity oldPost=repository
+                .findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Post not found with id "+id));
+        updatedPost.setId(id);
+        mapper.map(updatedPost, oldPost);
+       PostEntity savedPostEntity= repository.save(oldPost);
+       return mapper.map(savedPostEntity, PostDto.class);
+
     }
 }

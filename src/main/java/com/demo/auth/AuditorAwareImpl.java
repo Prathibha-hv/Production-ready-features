@@ -1,2 +1,12 @@
-package com.demo.auth;public class AuditorAwareImpl {
+package com.demo.auth;
+
+import org.springframework.data.domain.AuditorAware;
+
+import java.util.Optional;
+
+public class AuditorAwareImpl implements AuditorAware<String> {
+    @Override
+    public Optional<String> getCurrentAuditor() {
+        return Optional.of("Prathibha H V");
+    }
 }
