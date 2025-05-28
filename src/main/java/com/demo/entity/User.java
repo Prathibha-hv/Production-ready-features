@@ -21,10 +21,16 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
-    public User(Long id, String password, String email) {
+    private String name;
+
+    public User() {
+    }
+
+    public User(Long id, String password, String email, String name) {
         this.id = id;
         this.password = password;
         this.email = email;
+        this.name=name;
     }
 
     @Override
@@ -60,5 +66,13 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

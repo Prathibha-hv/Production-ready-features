@@ -3,16 +3,19 @@ package com.demo.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 
 import java.time.LocalDate;
 
-//@Data
+@Data
 @Entity
 @Table(name = "posts")
 
-//@AllArgsConstructor
-//@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class PostEntity extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,14 +23,14 @@ public class PostEntity extends AuditableEntity {
     private String title;
     private String description;
 
-    public PostEntity(String title, long id, String description) {
-        this.title = title;
-        this.id = id;
-        this.description = description;
-    }
-
-    public PostEntity() {
-    }
+//    public PostEntity(String title, long id, String description) {
+//        this.title = title;
+//        this.id = id;
+//        this.description = description;
+//    }
+//
+//    public PostEntity() {
+//    }
 
     public long getId() {
         return id;

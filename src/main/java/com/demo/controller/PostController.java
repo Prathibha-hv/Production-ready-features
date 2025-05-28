@@ -15,11 +15,10 @@ import java.util.Optional;
 
 @RestController
 //@RequiredArgsConstructor
-
-
 @RequestMapping(path="/api")
 public class PostController {
     Logger log= LoggerFactory.getLogger(PostServiceImpl.class);
+
 
    private final PostService service;
 
@@ -54,6 +53,6 @@ public class PostController {
     public  PostDto updatePost(@RequestBody PostDto updatedPost, @PathVariable long id)
     {
         PostDto updatePost=service.updatePost(updatedPost,id);
-        return null;
+        return updatePost;
     }
 }
